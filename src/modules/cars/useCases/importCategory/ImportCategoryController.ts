@@ -1,5 +1,4 @@
 import { Request, Response } from "express";
-
 import { container } from "tsyringe";
 
 import { ImportCategoryUseCase } from "./ImportCategoryUseCase";
@@ -12,9 +11,8 @@ class ImportCategoryController {
 
     await importCategoryUseCase.execute(file);
 
-    return response.send();
+    return response.status(201).send();
   }
 }
 
 export { ImportCategoryController };
-
