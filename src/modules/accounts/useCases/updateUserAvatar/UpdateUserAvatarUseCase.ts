@@ -1,10 +1,6 @@
-// Adicionar coluna avatar na tabela de users
-// Refatorar usuário
-// Configuração upload multer
-// Criar a regra de negócio do upload
-// Criar Controller
-
 import { inject, injectable } from "tsyringe";
+
+import { deleteFile } from "../../../../utils/file";
 import { IUsersRepository } from "../../repositories/IUsersRepository";
 
 interface IRequest {
@@ -22,6 +18,10 @@ class UpdateUserAvatarUseCase {
   async execute({ user_id, avatar_file }: IRequest): Promise<void> {
     const user = await this.usersRepository.findById(user_id);
 
+    if (user.avatar) {
+      await deleteFile(`./tmp/avatar/${user.avatar}`);
+    }
+
     user.avatar = avatar_file;
 
     await this.usersRepository.create(user);
@@ -29,4 +29,3 @@ class UpdateUserAvatarUseCase {
 }
 
 export { UpdateUserAvatarUseCase };
-
