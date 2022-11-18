@@ -1,26 +1,14 @@
-/*
-
- * For a detailed explanation regarding each configuration property and type check, visit:
-
- * https://jestjs.io/docs/configuration
-
- */
+import { pathsToModuleNameMapper } from "ts-jest";
+import { compilerOptions } from "./tsconfig.json";
 
 export default {
   // All imported modules in your tests should be mocked automatically
-
   // automock: false,
-
   // Stop running tests after `n` failures
-
   bail: true,
-
   // The directory where Jest should store its cached dependency information
-
   // cacheDirectory: "C:\\Users\\Proart Studios\\AppData\\Local\\Temp\\jest",
-
   // Automatically clear mock calls, instances, contexts and results before every test
-
   clearMocks: true,
 
   // Indicates whether the coverage information should be collected while executing the test
@@ -133,7 +121,9 @@ export default {
 
   // A map from regular expressions to module names or to arrays of module names that allow to stub out resources with a single module
 
-  // moduleNameMapper: {},
+  moduleNameMapper: pathsToModuleNameMapper(compilerOptions.paths, {
+    prefix: "<rootDir>/src/",
+  }),
 
   // An array of regexp pattern strings, matched against all module paths before considered 'visible' to the module loader
 
@@ -273,3 +263,4 @@ export default {
 
   // watchman: true,
 };
+
