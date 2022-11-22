@@ -29,7 +29,7 @@ export class CreateCars1668743991818 implements MigrationInterface {
             default: true,
           },
           {
-            name: "licenses_plate",
+            name: "license_plate",
             type: "varchar",
           },
           {
@@ -69,4 +69,3 @@ export class CreateCars1668743991818 implements MigrationInterface {
     await queryRunner.dropTable("cars");
   }
 }
-
