@@ -13,7 +13,7 @@ describe("Create car", () => {
   });
 
   it("should be at to create a new car", async () => {
-    await createCarUseCase.execute({
+    const car = await createCarUseCase.execute({
       name: "Name car",
       description: "Description car",
       daily_rate: 100,
@@ -22,6 +22,8 @@ describe("Create car", () => {
       brand: "Brand car",
       category_id: "category",
     });
+
+    expect(car).toHaveProperty("id");
   });
 
   it("should not be able to create a car with available true by default", () => {
@@ -62,3 +64,4 @@ describe("Create car", () => {
     expect(car.available).toBe(true);
   });
 });
+
