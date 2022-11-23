@@ -12,4 +12,3 @@ interface ICarsRepository {
 }
 
 export { ICarsRepository };
-
