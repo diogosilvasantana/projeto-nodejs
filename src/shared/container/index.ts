@@ -8,6 +8,8 @@ import { SpecificationsRepository } from "@modules/cars/infra/typeorm/repositori
 import { ICarsRepository } from "@modules/cars/repositories/ICarsRepository";
 import { ICategoriesRepository } from "@modules/cars/repositories/ICategoriesRepository";
 import { ISpecificationsRepository } from "@modules/cars/repositories/ISpecificationsRepository";
+import { ICarsImagesRepository } from "@modules/cars/repositories/ICarsImagesRepository";
+import { CarsImagesRepository } from "@modules/cars/infra/typeorm/repositories/CarsImageRepository";
 
 // ICategoriesRepository";"
 container.registerSingleton<ICategoriesRepository>(
@@ -28,3 +30,10 @@ container.registerSingleton<IUsersRepository>(
 );
 // ICarsRepository";"
 container.registerSingleton<ICarsRepository>("CarsRepository", CarsRepository);
+
+// ICarsImagesRepository
+container.registerSingleton<ICarsImagesRepository>(
+  "CarsImagesRepository",
+  CarsImagesRepository
+);
+
