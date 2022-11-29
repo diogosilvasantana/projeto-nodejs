@@ -11,11 +11,10 @@
   "paths": {
     "/categories": {
       "post": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "summary": "Create a category",
         "description": "Create a new category",
+        "security": [{ "bearerAuth": [] }],
         "requestBody": {
           "content": {
             "application/json": {
@@ -47,9 +46,7 @@
         }
       },
       "get": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "summary": "List all categories",
         "description": "List all categories",
         "responses": {
@@ -79,9 +76,7 @@
     },
     "/categories/import": {
       "post": {
-        "tags": [
-          "Category"
-        ],
+        "tags": ["Category"],
         "summary": "Upload a new category",
         "description": "Upload a new category",
         "requestBody": {
@@ -90,16 +85,16 @@
               "schema": {
                 "type": "object",
                 "properties": {
-                  "file":{
-                    "type":"string",
-                    "format":"binary"
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
                   }
                 }
               }
             }
           }
         },
-        "responses":{
+        "responses": {
           "201": {
             "description": "Created"
           }
@@ -108,9 +103,7 @@
     },
     "/specifications": {
       "post": {
-        "tags": [
-          "Specifications"
-        ],
+        "tags": ["Specifications"],
         "summary": "Create a specification",
         "description": "Create a new specification",
         "requestBody": {
@@ -131,6 +124,38 @@
           }
         }
       }
+    },
+    "/sessions": {
+      "post": {
+        "tags": ["Session"],
+        "summary": "Authentication user",
+        "description": "Authentication user",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          },
+          "400": {
+            "description": "Email or password is incorrect!"
+          }
+        }
+      }
     }
   },
   "definitions": {
@@ -145,5 +170,15 @@
         }
       }
     }
+  },
+  "components": {
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
   }
 }
+

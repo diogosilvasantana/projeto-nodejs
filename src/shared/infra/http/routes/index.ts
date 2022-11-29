@@ -18,7 +18,7 @@ router.use("/users", usersRoutes);
 // Carros
 router.use("/cars", carsRoutes);
 // Aluguel
-router.use("/rental", rentalRoutes);
+router.use("/rentals", rentalRoutes);
 // Autenticação
 router.use(authenticateRoutes);
 
