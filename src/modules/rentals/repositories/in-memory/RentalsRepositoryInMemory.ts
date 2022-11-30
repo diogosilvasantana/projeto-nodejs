@@ -46,3 +46,4 @@ class RentalsRepositoryInMemory implements IRentalsRepository {
 }
 
 export { RentalsRepositoryInMemory };
+
