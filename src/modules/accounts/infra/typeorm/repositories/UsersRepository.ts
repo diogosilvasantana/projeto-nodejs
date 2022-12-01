@@ -1,5 +1,7 @@
-import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
 import { getRepository, Repository } from "typeorm";
+
+import { IUsersRepository } from "@modules/accounts/repositories/IUsersRepository";
+
 import { User } from "../entities/User";
 
 class UsersRepository implements IUsersRepository {
@@ -41,4 +43,3 @@ class UsersRepository implements IUsersRepository {
 }
 
 export { UsersRepository };
-
