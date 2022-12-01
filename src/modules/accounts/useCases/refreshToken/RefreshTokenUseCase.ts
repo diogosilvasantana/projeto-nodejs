@@ -5,6 +5,7 @@ import auth from "@config/auth";
 import { IUsersTokensRepository } from "@modules/accounts/repositories/IUsersTokensRepository";
 import { DayjsDateProvider } from "@shared/container/providers/DateProvider/implementations/DayjsDateProvider";
 import { AppError } from "@shared/errors/AppError";
+import { IDateProvider } from "@shared/container/providers/DateProvider/IDateProvider";
 
 interface IPayload {
   sub: string;
@@ -18,7 +19,7 @@ class RefreshTokenUseCase {
     private usersTokensRepository: IUsersTokensRepository,
 
     @inject("DayjsDateProvider")
-    private dayjsDateProvider: DayjsDateProvider
+    private dateProvider: IDateProvider
   ) {}
 
   async execute(token: string): Promise<string> {
@@ -37,7 +38,7 @@ class RefreshTokenUseCase {
 
     await this.usersTokensRepository.deleteById(userTokens.id);
 
-    const expires_date = this.dayjsDateProvider.addDays(
+    const expires_date = this.dateProvider.addDays(
       auth.expiresIn_refresh_token_days
     );
 
@@ -57,3 +58,4 @@ class RefreshTokenUseCase {
 }
 
 export { RefreshTokenUseCase };
+
